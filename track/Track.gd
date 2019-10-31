@@ -33,6 +33,9 @@ func calculateNodeVectors(prev, curr, next):
   curr.prev = prev
   curr.next = next
 
+  #d/sin(theta)
+  curr.curvature = (curr.link/2) / sin(curr.link.angle_to(curr.normal))
+
 func globalToTrack(R):
   var closest = trackNodes[0]
   var closestDist = closest.global_position.distance_to(R)

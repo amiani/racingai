@@ -6,6 +6,7 @@ export var width = 100
 export var index = 0
 var link : Vector2
 var normal : Vector2
+var curvature = 0
 var color = '#fa37c6'
 var distance = 99999
 var next : Node2D
