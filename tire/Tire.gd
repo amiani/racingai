@@ -21,7 +21,7 @@ func getLateralSpeed():
   return getForwardNormal().rotated(PI/2).dot(linear_velocity)
 
 export var isPrint = false
-var maxLateralDrag = 110000
+var maxLateralDrag = 93000
 func updateFriction(state):
   var lateralDrag = -getLateralSpeed() * mass / state.step
   lateralDrag = clamp(lateralDrag, -maxLateralDrag, maxLateralDrag)
@@ -36,7 +36,7 @@ var desiredAngle = 0
 func _on_Car_steerAt(angle):
   desiredAngle = angle
 
-var lockAngle = PI/5
+var lockAngle = 40*PI/180
 var turnSpeed = 3*PI/2 /60
 func updateTurn():
   var angleToTurn = 0
@@ -55,7 +55,7 @@ func updateTurn():
 
 var maxForwardSpeed = 3000
 var maxBackwardSpeed = -200
-var maxDriveForce = mass * 1000
+var maxDriveForce = mass * 1500
 func updateDrive(state):
   var desiredSpeed = maxForwardSpeed
 
