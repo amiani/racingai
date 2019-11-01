@@ -45,7 +45,8 @@ texture = ExtResource( 3 )
 flip_h = true
 
 [node name="Target" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 4 )
 color = Color( 1, 1, 1, 1 )
-[connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]
 [connection signal="steerAt" from="." to="FrontRight" method="_on_Car_steerAt"]
+[connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]

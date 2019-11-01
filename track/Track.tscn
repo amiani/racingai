@@ -9,89 +9,59 @@ script = ExtResource( 1 )
 [node name="TrackNode" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1.82468, 306.768 )
 isStart = true
-width = 100
-index = 0
 
 [node name="TrackNode2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 205.395, 303.277 )
-isStart = false
-width = 100
 index = 1
 
 [node name="TrackNode3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 414.915, 258.057 )
-isStart = false
-width = 100
 index = 2
 
 [node name="TrackNode4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 586.751, 126.919 )
-isStart = false
-width = 100
 index = 3
 
 [node name="TrackNode5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 628.957, -64.5132 )
-isStart = false
-width = 100
 index = 4
 
 [node name="TrackNode6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 588.258, -280.063 )
-isStart = false
-width = 100
 index = 5
 
 [node name="TrackNode7" parent="." instance=ExtResource( 2 )]
 position = Vector2( 378.738, -368.995 )
-isStart = false
-width = 100
 index = 6
 
 [node name="TrackNode8" parent="." instance=ExtResource( 2 )]
 position = Vector2( 182.785, -409.693 )
-isStart = false
-width = 100
 index = 7
 
 [node name="TrackNode9" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0.396729, -420.245 )
-isStart = false
-width = 100
 index = 8
 
 [node name="TrackNode10" parent="." instance=ExtResource( 2 )]
 position = Vector2( -269.417, -412.708 )
-isStart = false
-width = 100
 index = 9
 
 [node name="TrackNode11" parent="." instance=ExtResource( 2 )]
 position = Vector2( -512.349, -329.805 )
-isStart = false
-width = 100
 index = 10
 
 [node name="TrackNode12" parent="." instance=ExtResource( 2 )]
 position = Vector2( -632.685, -216.754 )
-isStart = false
-width = 100
 index = 11
 
 [node name="TrackNode13" parent="." instance=ExtResource( 2 )]
 position = Vector2( -667.354, 0.30249 )
-isStart = false
-width = 100
 index = 12
 
 [node name="TrackNode14" parent="." instance=ExtResource( 2 )]
 position = Vector2( -625.149, 181.183 )
-isStart = false
-width = 100
 index = 13
 
 [node name="TrackNode15" parent="." instance=ExtResource( 2 )]
 position = Vector2( -371.916, 271.623 )
-isStart = false
-width = 100
 index = 14
