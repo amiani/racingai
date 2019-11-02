@@ -26,28 +26,7 @@ __meta__ = {
 }
 
 [node name="Car" parent="." instance=ExtResource( 1 )]
-position = Vector2( -37.7811, 355.735 )
-mass = 100.0
-trackPath = NodePath("../Track")
-ahead = 170
-
-[node name="Car3" parent="." instance=ExtResource( 1 )]
-modulate = Color( 0.827451, 0.133333, 0.133333, 1 )
-position = Vector2( 8.70596, 314.572 )
-mass = 100.0
-trackPath = NodePath("../Track")
-ahead = 170
-
-[node name="Car2" parent="." instance=ExtResource( 1 )]
-modulate = Color( 0.164706, 0.886275, 0.243137, 1 )
-position = Vector2( -94.6815, 396.68 )
-mass = 100.0
-trackPath = NodePath("../Track")
-ahead = 170
-
-[node name="Car4" parent="." instance=ExtResource( 1 )]
-modulate = Color( 0.933333, 0.545098, 0.129412, 1 )
-position = Vector2( -152.204, 351.175 )
+position = Vector2( -13.2945, 271.392 )
 mass = 100.0
 trackPath = NodePath("../Track")
 ahead = 170
@@ -71,6 +50,3 @@ __meta__ = {
 "_edit_lock_": true
 }
 [connection signal="position" from="Car" to="CarPos Label" method="_on_Car_position"]
-[connection signal="position" from="Car3" to="CarPos Label" method="_on_Car_position"]
-[connection signal="position" from="Car2" to="CarPos Label" method="_on_Car_position"]
-[connection signal="position" from="Car4" to="CarPos Label" method="_on_Car_position"]

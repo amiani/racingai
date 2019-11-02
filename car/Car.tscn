@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://car/Car.gd" type="Script" id=1]
 [ext_resource path="res://tire/Tire.tscn" type="PackedScene" id=2]
 [ext_resource path="res://car/yellowcar.png" type="Texture" id=3]
 [ext_resource path="res://car/Target.gd" type="Script" id=4]
+[ext_resource path="res://steering/SteeringController.gd" type="Script" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -43,8 +44,10 @@ texture = ExtResource( 3 )
 flip_h = true
 
 [node name="Target" type="Node2D" parent="."]
-visible = false
 script = ExtResource( 4 )
 color = Color( 1, 1, 1, 1 )
-[connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]
+
+[node name="SteeringController" type="Node" parent="."]
+script = ExtResource( 5 )
 [connection signal="steerAt" from="." to="FrontRight" method="_on_Car_steerAt"]
+[connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]

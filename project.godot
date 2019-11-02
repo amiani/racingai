@@ -8,9 +8,38 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Behaviour",
+"class": "AvoidBehaviour",
+"language": "GDScript",
+"path": "res://steering/AvoidBehaviour.gd"
+}, {
+"base": "Node",
+"class": "Behaviour",
+"language": "GDScript",
+"path": "res://steering/Behaviour.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Car",
+"language": "GDScript",
+"path": "res://car/Car.gd"
+}, {
+"base": "Behaviour",
+"class": "RacingLineBehaviour",
+"language": "GDScript",
+"path": "res://steering/RacingLineBehaviour.gd"
+}, {
+"base": "Node2D",
+"class": "Track",
+"language": "GDScript",
+"path": "res://track/Track.gd"
+} ]
 _global_script_class_icons={
-
+"AvoidBehaviour": "",
+"Behaviour": "",
+"Car": "",
+"RacingLineBehaviour": "",
+"Track": ""
 }
 
 [application]
