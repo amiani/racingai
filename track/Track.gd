@@ -66,32 +66,14 @@ func globalToTrack(globalPosition) -> TrackPosition:
     lat *= -1
   return TrackPosition.new(registered, long, lat)
 
-func getWidthAt(position:TrackPosition) -> float:
-  var trackNode = position.trackNode
-  var b = trackNode.width
-  var a = trackNode.next.width - b
-  return a * position.long + b
-
 func getTarget(position:TrackPosition, ahead:float, offsetLat:float) -> TrackPosition:
   var remainder = position.trackNode.link.length() * position.long + ahead
   return walkLine(remainder, position.trackNode, offsetLat)
 
 func walkLine(remainder, trackNode, offsetLat):
   var linkLength = trackNode.link.length()
+
   if remainder > linkLength:
     return walkLine(remainder - linkLength, trackNode.next, offsetLat)
   else:
     return TrackPosition.new(trackNode, remainder / linkLength, offsetLat)
-
-
-class TrackPosition:
-  var long = 0
-  var lat = 0
-  var trackNode : Node2D
-  func _init(trackNode, long=0, lat=0):
-    self.trackNode = trackNode
-    self.long = long
-    self.lat = lat
-
-  func toGlobal():
-    return trackNode.to_global(trackNode.link*long + trackNode.link.normalized().rotated(-PI/2) * lat)
