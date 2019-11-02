@@ -11,26 +11,26 @@ func _ready():
 var resolution = 10
 func _process(delta):
   var carPos = car.getTrackPosition()
-  var trackWidth = car.track.getWidthAt(carPos)
+  var trackWidth = carPos.trackWidth
   var slotWidth = trackWidth/resolution
   var carSlot = getCarSlot(carPos.lat, trackWidth, slotWidth)
-  var offsetBrake = getOffsetBrake(behaviours, carSlot)
-  var target = getTarget(carPos, offsetBrake, slotWidth)
+  var offsetBrake = getOffsetBrake(behaviours, carPos, carSlot)
+  var target = getTarget(carPos, offsetBrake, slotWidth, trackWidth)
   #var controls = getControls(target)
 
 func getCarSlot(carLat, trackWidth, slotWidth):
   var carLatTranslated = carLat + trackWidth / 2
   return floor(carLatTranslated / slotWidth)
 
-func getOffsetBrake(behaviours, carSlot):
+func getOffsetBrake(behaviours, carPos, carSlot):
   var danger = []
   var interest = []
   for i in range(0, resolution):
     interest.append(0)
     danger.append(0)
   for b in behaviours:
-    var currDanger = b.getDanger(resolution)
-    var currInterest = b.getInterest(resolution)
+    var currDanger = b.getDanger(carPos, resolution)
+    var currInterest = b.getInterest(carPos, resolution)
     for i in range(0, resolution):
       danger[i] = max(danger[i], currDanger[i])
       interest[i] = max(interest[i], currInterest[i])
@@ -72,11 +72,10 @@ func maskInterest(interest, danger, carSlot):
   
 
 var ahead = 250
-func getTarget(carPos, offsetBrake, slotWidth):
-  var offsetLat = slotWidth * offsetBrake.slot + slotWidth / 2
+func getTarget(carPos, offsetBrake, slotWidth, trackWidth):
+  var offsetLat = (slotWidth * offsetBrake.slot + slotWidth / 2) - trackWidth / 2
   var targetPosition = car.track.getTarget(carPos, ahead, offsetLat)
   car.target.global_position = targetPosition.toGlobal()
-
 
 func getControls(target):
   pass
