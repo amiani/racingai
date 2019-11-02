@@ -8,7 +8,7 @@
 [sub_resource type="PhysicsMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32.2147, 13.8416 )
+extents = Vector2( 31.8694, 14.08 )
 
 [node name="Car" type="RigidBody2D"]
 mass = 500.0
@@ -20,8 +20,6 @@ angular_damp = 0.0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -0.0994415, 0.0994415 )
 shape = SubResource( 2 )
 
 [node name="BackRight" parent="." instance=ExtResource( 2 )]
@@ -48,5 +46,5 @@ flip_h = true
 visible = false
 script = ExtResource( 4 )
 color = Color( 1, 1, 1, 1 )
-[connection signal="steerAt" from="." to="FrontRight" method="_on_Car_steerAt"]
 [connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]
+[connection signal="steerAt" from="." to="FrontRight" method="_on_Car_steerAt"]
