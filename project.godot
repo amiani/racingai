@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://steering/RacingLineBehaviour.gd"
 }, {
+"base": "Node",
+"class": "SteeringController",
+"language": "GDScript",
+"path": "res://steering/SteeringController.gd"
+}, {
+"base": "Node2D",
+"class": "Target",
+"language": "GDScript",
+"path": "res://car/Target.gd"
+}, {
 "base": "Node2D",
 "class": "Track",
 "language": "GDScript",
@@ -49,6 +59,8 @@ _global_script_class_icons={
 "Behaviour": "",
 "Car": "",
 "RacingLineBehaviour": "",
+"SteeringController": "",
+"Target": "",
 "Track": "",
 "TrackNode": "",
 "TrackPosition": ""

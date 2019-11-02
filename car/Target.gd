@@ -1,4 +1,5 @@
 extends Node2D
+class_name Target
 
 export(Color, RGB) var color
 func _draw():
