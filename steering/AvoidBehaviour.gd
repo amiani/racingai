@@ -9,5 +9,5 @@ func _init(cars:Array):
 func _ready():
 	pass
 
-func getDanger(resolution:int):
+func getDanger(position:TrackPosition, resolution:int):
   pass
