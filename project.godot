@@ -33,13 +33,25 @@ _global_script_classes=[ {
 "class": "Track",
 "language": "GDScript",
 "path": "res://track/Track.gd"
+}, {
+"base": "Node2D",
+"class": "TrackNode",
+"language": "GDScript",
+"path": "res://track/TrackNode.gd"
+}, {
+"base": "Reference",
+"class": "TrackPosition",
+"language": "GDScript",
+"path": "res://track/TrackPosition.gd"
 } ]
 _global_script_class_icons={
 "AvoidBehaviour": "",
 "Behaviour": "",
 "Car": "",
 "RacingLineBehaviour": "",
-"Track": ""
+"Track": "",
+"TrackNode": "",
+"TrackPosition": ""
 }
 
 [application]
