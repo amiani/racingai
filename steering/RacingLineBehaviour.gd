@@ -1,11 +1,7 @@
 extends Behaviour
 class_name RacingLineBehaviour
 
-var track : Track
-func _init(track:Track):
-  self.track = track
-
-func getInterest(position:TrackPosition, resolution:int):
+func getInterest(position:TrackPosition, track: Track, cars, resolution:int):
   var lineSlot = getLineSlot(position, resolution)
   var interest = []
   for i in range(0, resolution):

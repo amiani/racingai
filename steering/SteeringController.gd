@@ -1,12 +1,11 @@
 extends Node
+class_name SteeringController
 
 var behaviours : Array
 var car : Car
 func _ready():
   car = get_parent()
-  var racingLineBehaviour = RacingLineBehaviour.new(car.track)
-  #var avoidBehaviour = AvoidBehaviour.new(cars)
-  behaviours = [racingLineBehaviour]
+  behaviours = get_children()
 
 var resolution = 10
 func _process(delta):
@@ -25,12 +24,14 @@ func getCarSlot(carLat, trackWidth, slotWidth):
 func getOffsetBrake(behaviours, carPos, carSlot):
   var danger = []
   var interest = []
+  var cars = car.get_parent().get_children()
+  cars.remove(car.get_index())
   for i in range(0, resolution):
     interest.append(0)
     danger.append(0)
   for b in behaviours:
-    var currDanger = b.getDanger(carPos, resolution)
-    var currInterest = b.getInterest(carPos, resolution)
+    var currInterest = b.getInterest(carPos, car.track, cars, resolution)
+    var currDanger = b.getDanger(carPos, car.track, cars, resolution)
     for i in range(0, resolution):
       danger[i] = max(danger[i], currDanger[i])
       interest[i] = max(interest[i], currInterest[i])
