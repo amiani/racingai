@@ -9,7 +9,9 @@ func _ready():
 
 signal steerAt(angle)
 signal position(R)
-export var ahead = 250
+export var maxForwardSpeed : int = 2000
+export var maxBackwardSpeed : int = -500
+export var maxDriveForce : int = 100
 func _process(delta):
   emit_signal('position', track.globalToTrack(global_position))
 

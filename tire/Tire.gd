@@ -2,9 +2,11 @@ extends RigidBody2D
 
 export var isDrive = false
 
+var car
 func _enter_tree():
+  car = get_parent()
   var joint = PinJoint2D.new()
-  joint.node_a = get_parent().get_path()
+  joint.node_a = car.get_path()
   joint.node_b = get_path()
   add_child(joint)
 
@@ -52,17 +54,13 @@ func updateTurn():
 
   rotation = angleToTurn
 
-
-var maxForwardSpeed = 3000
-var maxBackwardSpeed = -200
-var maxDriveForce = mass * 1500
 func updateDrive(state):
-  var desiredSpeed = maxForwardSpeed
+  var desiredSpeed = car.maxForwardSpeed
 
   var force = 0
   var forwardSpeed = getForwardSpeed(state.linear_velocity)
-  if desiredSpeed > forwardSpeed: force = maxDriveForce
-  elif desiredSpeed < forwardSpeed && desiredSpeed != 0: force = -maxDriveForce
+  if desiredSpeed > forwardSpeed: force = car.maxDriveForce * car.mass
+  elif desiredSpeed < forwardSpeed && desiredSpeed != 0: force = -car.maxDriveForce * car.mass
   else: return
 
   applied_force += Vector2(force, 0).rotated(global_rotation)
