@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://car/Car.gd" type="Script" id=1]
 [ext_resource path="res://tire/Tire.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://car/Target.gd" type="Script" id=4]
 [ext_resource path="res://steering/SteeringController.gd" type="Script" id=5]
 [ext_resource path="res://steering/RacingLineBehaviour.gd" type="Script" id=6]
+[ext_resource path="res://steering/AvoidBehaviour.gd" type="Script" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -55,5 +56,8 @@ script = ExtResource( 5 )
 
 [node name="RacingLineBehaviour" type="Node" parent="SteeringController"]
 script = ExtResource( 6 )
+
+[node name="AvoidBehaviour" type="Node" parent="SteeringController"]
+script = ExtResource( 7 )
 [connection signal="steerAt" from="." to="FrontRight" method="_on_Car_steerAt"]
 [connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]
