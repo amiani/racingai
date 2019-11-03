@@ -7,17 +7,12 @@ export var leftWidth = 100
 export var rightWidth = 100
 export var index = 0
 var link : Vector2
-var linkLength setget setLinkLength, getLinkLength
-func setLinkLength(l):
-  print('stop it')
-func getLinkLength():
-  return link.length()
 var normal : Vector2
 var curvature = 0
 var color = '#fa37c6'
 var distance = 99999
-var next : Node2D
-var prev : Node2D
+var next : TrackNode
+var prev : TrackNode
 
 func _ready():
   get_parent().addTrackNode(self)
