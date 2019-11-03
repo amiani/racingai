@@ -15,7 +15,7 @@ var next : TrackNode
 var prev : TrackNode
 
 func _ready():
-  get_parent().addTrackNode(self)
+  get_parent().get_parent().addTrackNode(self)
   
 func _draw():
   draw_circle(Vector2(), 8, Color(color))
