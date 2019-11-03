@@ -15,5 +15,9 @@ func _process(delta):
 
   emit_signal('steerAt', Vector2(1,0).angle_to(target.position))
 
+var trackPosition setget setTrackPosition, getTrackPosition
+func setTrackPosition(trackPosition:TrackPosition):
+  print('setTrackPosition does nothing for now?')
+
 func getTrackPosition():
   return track.globalToTrack(global_position)
