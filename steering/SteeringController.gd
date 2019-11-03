@@ -9,30 +9,25 @@ func _ready():
 
 var resolution = 10
 func _process(delta):
-  var carPos = car.getTrackPosition()
+  var carPos = car.trackPosition
   var trackWidth = carPos.trackWidth
   var slotWidth = trackWidth/resolution
-  var carSlot = getCarSlot(carPos.lat, trackWidth, slotWidth)
-  var offsetBrake = getOffsetBrake(behaviours, carPos, carSlot)
+  var offsetBrake = getOffsetBrake(behaviours, carPos, carPos.toSlot(resolution))
   var target = getTarget(carPos, offsetBrake, slotWidth, trackWidth)
   #var controls = getControls(target)
-
-func getCarSlot(carLat, trackWidth, slotWidth):
-  var carLatTranslated = carLat + trackWidth / 2
-  return floor(carLatTranslated / slotWidth)
 
 func getOffsetBrake(behaviours, carPos, carSlot):
   var danger = []
   var interest = []
   var cars = car.get_parent().get_children()
   cars.remove(car.get_index())
-  for i in range(0, resolution):
+  for i in range(resolution):
     interest.append(0)
     danger.append(0)
   for b in behaviours:
     var currInterest = b.getInterest(carPos, car.track, cars, resolution)
     var currDanger = b.getDanger(carPos, car.track, cars, resolution)
-    for i in range(0, resolution):
+    for i in range(resolution):
       danger[i] = max(danger[i], currDanger[i])
       interest[i] = max(interest[i], currInterest[i])
   
@@ -42,6 +37,7 @@ func getOffsetBrake(behaviours, carPos, carSlot):
   for i in range(resolution):
     if interest[i] > maxInterest:
       maxIndex = i
+      maxInterest = interest[i]
   
   return {
     slot = maxIndex,
@@ -54,19 +50,20 @@ func maskInterest(interest, danger, carSlot):
     maskedInterest = interest.duplicate()
     var currDanger = danger[carSlot]
     var i = carSlot
-    while danger[i] < currDanger && i >= 0:
+    while i >= 0 && danger[i] <= currDanger:
       currDanger = danger[i]
-      i+=1
+      i-=1
     for j in range(i, -1, -1):
       maskedInterest[j] = 0
 
-    while danger[i] < currDanger && i < interest.size():
+    i = carSlot
+    while i < interest.size() && danger[i] <= currDanger:
       currDanger = danger[i]
       i+=1
     for j in range(i, interest.size()):
       maskedInterest[j] = 0
   else:
-    for i in range(0, interest.size()):
+    for i in range(interest.size()):
       maskedInterest.append(0)
 
   return maskedInterest
