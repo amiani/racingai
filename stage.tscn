@@ -17,6 +17,7 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
+visible = false
 position = Vector2( -6.34668, -9.52002 )
 texture = SubResource( 2 )
 region_enabled = true
@@ -32,7 +33,6 @@ __meta__ = {
 }
 
 [node name="Track" parent="." instance=ExtResource( 1 )]
-position = Vector2( 13.509, 45.9305 )
 
 [node name="CarPos Label" type="Label" parent="."]
 margin_left = -690.329
@@ -50,12 +50,4 @@ __meta__ = {
 position = Vector2( -13.2945, 271.392 )
 mass = 100.0
 trackPath = NodePath("../../Track")
-ahead = 170
-
-[node name="Car2" parent="Cars" instance=ExtResource( 3 )]
-position = Vector2( -14.8018, 316.612 )
-mass = 100.0
-trackPath = NodePath("../../Track")
-ahead = 170
 [connection signal="position" from="Cars/Car" to="CarPos Label" method="_on_Car_position"]
-[connection signal="position" from="Cars/Car2" to="CarPos Label" method="_on_Car_position"]
