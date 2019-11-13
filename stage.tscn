@@ -56,6 +56,7 @@ enabled_focus_mode = 0
 text = "Show Track Debug"
 
 [node name="CarPos Label" type="Label" parent="UI"]
+visible = false
 margin_left = -693.669
 margin_top = -443.719
 margin_right = -653.669
