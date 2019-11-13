@@ -24,7 +24,9 @@ func toSlot(resolution):
 func setTrackWidth(w):
   print("ERROR: Can't set track width")
 
-func getTrackWidth() -> float:  #TODO: redo to use rightWidth as well
-  var b = 2 * trackNode.leftWidth
-  var m = 2 * trackNode.next.leftWidth - b
-  return m * long + b
+func getTrackWidth() -> float:
+  if !trackWidth:
+    var b = trackNode.leftWidth + trackNode.rightWidth
+    var m = trackNode.next.leftWidth + trackNode.next.rightWidth - b
+    trackWidth = m * long + b
+  return trackWidth
