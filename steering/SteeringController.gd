@@ -30,7 +30,7 @@ func getOffsetBrake(behaviours, carPos, carSlot):
     for i in range(resolution):
       danger[i] = max(danger[i], currDanger[i])
       interest[i] = max(interest[i], currInterest[i])
-  
+
   interest = maskInterest(interest, danger, carSlot)
   var maxIndex = 0
   var maxInterest = interest[0]
@@ -38,37 +38,32 @@ func getOffsetBrake(behaviours, carPos, carSlot):
     if interest[i] > maxInterest:
       maxIndex = i
       maxInterest = interest[i]
-  
+
   return {
     slot = maxIndex,
-    brake = 0 #TODO: calculate how much braking is needed
+    brake = 0
   }
 
 func maskInterest(interest, danger, carSlot):
-  var maskedInterest : Array
-  if carSlot >= 0 && carSlot < 10:
-    maskedInterest = interest.duplicate()
-    var currDanger = danger[carSlot]
-    var i = carSlot
-    while i >= 0 && danger[i] <= currDanger:
-      currDanger = danger[i]
-      i-=1
-    for j in range(i, -1, -1):
-      maskedInterest[j] = 0
+  carSlot = clamp(carSlot, 0, interest.size()-1)
+  var maskedInterest = interest.duplicate()
+  var currDanger = danger[carSlot]
+  var i = carSlot
+  while i >= 0 && danger[i] <= currDanger:
+    currDanger = danger[i]
+    i-=1
+  for j in range(i, -1, -1):
+    maskedInterest[j] = 0
 
-    i = carSlot
+  i = carSlot
   currDanger = danger[i]
-    while i < interest.size() && danger[i] <= currDanger:
-      currDanger = danger[i]
-      i+=1
-    for j in range(i, interest.size()):
-      maskedInterest[j] = 0
-  else:
-    for i in range(interest.size()):
-      maskedInterest.append(0)
-
+  while i < interest.size() && danger[i] <= currDanger:
+    currDanger = danger[i]
+    i+=1
+  for j in range(i, interest.size()):
+    maskedInterest[j] = 0
   return maskedInterest
-  
+
 
 var ahead = 200
 func getTarget(carPos, offsetBrake, slotWidth, trackWidth):
