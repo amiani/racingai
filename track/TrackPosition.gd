@@ -11,9 +11,14 @@ func _init(trackNode:TrackNode, long=0, lat=0):
   self.long = long
   self.lat = lat
 
+func getLatNormal() -> Vector2:
+  return ((1-long)*trackNode.normal + long*trackNode.next.normal).rotated(PI/2)
+
 func toGlobal() -> Vector2:
-  var latNormal = (1-long)*trackNode.normal + long*trackNode.next.normal
-  return trackNode.to_global(long*trackNode.link + lat*latNormal.rotated(PI/2))
+  return trackNode.to_global(toLocal())
+
+func toLocal() -> Vector2:
+  return long*trackNode.link + lat*getLatNormal()
 
 func toSlot(resolution):
   var trackWidth = getTrackWidth()
@@ -30,3 +35,6 @@ func getTrackWidth() -> float:
     var m = trackNode.next.leftWidth + trackNode.next.rightWidth - b
     trackWidth = m * long + b
   return trackWidth
+
+func lineDistanceTo(position:TrackPosition) -> float:
+  return .0
