@@ -6,6 +6,7 @@ var track
 onready var target = $Target
 func _ready():
   track = get_node(trackPath)
+  get_node('../../UI/DebugToggle').connect('toggled', self, '_on_DebugToggle_toggled')
 
 signal steerAt(angle)
 signal position(R)
@@ -23,3 +24,6 @@ func setTrackPosition(trackPosition:TrackPosition):
 
 func getTrackPosition():
   return track.globalToTrack(global_position)
+
+func _on_DebugToggle_toggled(button_pressed):
+  target.visible = !target.visible

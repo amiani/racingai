@@ -21,7 +21,7 @@ class TrackNodeIndexSorter:
     if a.index < b.index:
       return true
     return false
-    
+
 var trackNodes = []
 func addTrackNode(trackNode):
   trackNodes.push_back(trackNode)
@@ -34,7 +34,7 @@ func calculateNodeVectors(prev, curr, next):
   curr.prev = prev
   curr.next = next
 
-  curr.curvature = (curr.link/2) / sin(curr.link.angle_to(curr.normal)) #d/sin(theta)
+  curr.curvature = (curr.link.length()/2) / sin(curr.link.angle_to(curr.normal)) #d/sin(theta)
 
 func globalToTrack(globalPosition) -> TrackPosition:
   var closest = trackNodes[0]
@@ -45,7 +45,7 @@ func globalToTrack(globalPosition) -> TrackPosition:
     if nDist < closestDist:
       closest = n
       closestDist = nDist
-    
+
   var registered
   var next
   if closest.to_local(globalPosition).dot(closest.normal) > 0:
@@ -76,3 +76,7 @@ func walkLine(remainder, trackNode, offsetLat):
     return walkLine(remainder - linkLength, trackNode.next, offsetLat)
   else:
     return TrackPosition.new(trackNode, remainder / linkLength, offsetLat)
+
+func _on_CheckButton_toggled(button_pressed):
+  for n in trackNodes:
+    n.visible = !n.visible

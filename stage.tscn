@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://track/Track.tscn" type="PackedScene" id=1]
-[ext_resource path="res://CarPos Label.gd" type="Script" id=2]
-[ext_resource path="res://car/Car.tscn" type="PackedScene" id=3]
+[ext_resource path="res://car/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CarPos Label.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -34,20 +34,38 @@ __meta__ = {
 
 [node name="Track" parent="." instance=ExtResource( 1 )]
 
-[node name="CarPos Label" type="Label" parent="."]
-margin_left = -690.329
-margin_top = -450.4
-margin_right = -650.329
-margin_bottom = -436.4
-script = ExtResource( 2 )
+[node name="Cars" type="Node" parent="."]
+
+[node name="Car" parent="Cars" instance=ExtResource( 2 )]
+position = Vector2( -13.2945, 271.392 )
+trackPath = NodePath("../../Track")
+
+[node name="Car2" parent="Cars" instance=ExtResource( 2 )]
+position = Vector2( -8.28388, 376.613 )
+trackPath = NodePath("../../Track")
+
+[node name="UI" type="Node" parent="."]
+
+[node name="DebugToggle" type="CheckButton" parent="UI"]
+margin_left = -713.165
+margin_top = -489.361
+margin_right = -518.165
+margin_bottom = -449.361
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Show Track Debug"
+
+[node name="CarPos Label" type="Label" parent="UI"]
+margin_left = -693.669
+margin_top = -443.719
+margin_right = -653.669
+margin_bottom = -429.719
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Cars" type="Node" parent="."]
-
-[node name="Car" parent="Cars" instance=ExtResource( 3 )]
-position = Vector2( -13.2945, 271.392 )
-mass = 100.0
-trackPath = NodePath("../../Track")
-[connection signal="position" from="Cars/Car" to="CarPos Label" method="_on_Car_position"]
+[connection signal="position" from="Cars/Car" to="UI/CarPos Label" method="_on_Car_position"]
+[connection signal="position" from="Cars/Car2" to="UI/CarPos Label" method="_on_Car_position"]
+[connection signal="toggled" from="UI/DebugToggle" to="UI/CarPos Label" method="_on_DebugToggle_toggled"]
+[connection signal="toggled" from="UI/DebugToggle" to="Cars/Car" method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="UI/DebugToggle" to="Track" method="_on_CheckButton_toggled"]
