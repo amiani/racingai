@@ -57,6 +57,7 @@ func maskInterest(interest, danger, carSlot):
       maskedInterest[j] = 0
 
     i = carSlot
+  currDanger = danger[i]
     while i < interest.size() && danger[i] <= currDanger:
       currDanger = danger[i]
       i+=1
