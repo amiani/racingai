@@ -9,4 +9,4 @@ func getInterest(position:TrackPosition, track: Track, cars, resolution:int):
   return interest
   
 func getLineSlot(position:TrackPosition, resolution):
-  return resolution / 2 - 2
+  return resolution / 2
