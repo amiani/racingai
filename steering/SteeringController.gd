@@ -70,10 +70,14 @@ func maskInterest(interest, danger, carSlot):
   return maskedInterest
   
 
-var ahead = 250
+var ahead = 200
 func getTarget(carPos, offsetBrake, slotWidth, trackWidth):
+  var maxAhead = 300
+  var minAhead = 150
+  var m = (maxAhead-minAhead)/(3902-271)
+  var long = m * carPos.trackNode.next.curvature + (minAhead - m * 271)
   var offsetLat = (slotWidth * offsetBrake.slot + slotWidth / 2) - trackWidth / 2
-  var targetPosition = car.track.getTarget(carPos, ahead, offsetLat)
+  var targetPosition = car.track.getTarget(carPos, long, offsetLat)
   car.target.global_position = targetPosition.toGlobal()
 
 func getControls(target):
