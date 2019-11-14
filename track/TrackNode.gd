@@ -13,12 +13,15 @@ var color = '#fa37c6'
 var distance = 99999
 var next : TrackNode
 var prev : TrackNode
+export var lineLat : float
 
 func _ready():
   get_parent().get_parent().addTrackNode(self)
-  
+
 func _draw():
   draw_circle(Vector2(), 8, Color(color))
+
+  draw_circle(lineLat*normal.rotated(PI/2), 6, Color('#ffffff'))
   draw_line(Vector2(), link, Color('#0066ff'))
   draw_line(Vector2(), normal*20, Color('#ff0000'))
 
