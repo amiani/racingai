@@ -4,7 +4,7 @@ export var isDrive = false
 
 var car
 func _enter_tree():
-  car = get_parent()
+  car = get_parent().get_parent()
   var joint = PinJoint2D.new()
   joint.node_a = car.get_path()
   joint.node_b = get_path()

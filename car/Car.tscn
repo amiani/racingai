@@ -25,20 +25,26 @@ __meta__ = {
 }
 maxDriveForce = 300
 
-[node name="BackRight" parent="." instance=ExtResource( 2 )]
+[node name="Tires" type="Node2D" parent="."]
+
+[node name="BackRight" parent="Tires" instance=ExtResource( 2 )]
 position = Vector2( -19.8881, 11.8334 )
 
-[node name="BackLeft" parent="." instance=ExtResource( 2 )]
+[node name="BackLeft" parent="Tires" instance=ExtResource( 2 )]
 position = Vector2( -19.8881, -11.7339 )
 
-[node name="FrontRight" parent="." instance=ExtResource( 2 )]
+[node name="FrontRight" parent="Tires" instance=ExtResource( 2 )]
 position = Vector2( 18.5953, 11.8334 )
 isDrive = true
 isPrint = true
 
-[node name="FrontLeft" parent="." instance=ExtResource( 2 )]
+[node name="FrontLeft" parent="Tires" instance=ExtResource( 2 )]
 position = Vector2( 18.9931, -11.6345 )
 isDrive = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2( 0.02, 0.02 )
+polygon = PoolVector2Array( -1107.5, -718.2, -1320.5, -673.2, -1454.5, -615.7, -1553.5, -514.2, -1593.5, -422.2, -1614.96, -311.936, -1630.3, 309, -1594.5, 446, -1550.3, 521, -1481.3, 583, -1386.6, 623, -1179.35, 654.839, -748.241, 689.156, 802.043, 710.262, 1220.64, 685.824, 1377.09, 653.948, 1489.5, 612.6, 1545.5, 562.5, 1580.5, 482.2, 1631.5, 159.8, 1631.5, -65.1, 1612.7, -334, 1588.7, -454, 1539.6, -536, 1427.5, -611, 1201.34, -672.132, 795.1, -695 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.02, 0.02 )
@@ -64,9 +70,5 @@ script = ExtResource( 6 )
 
 [node name="AvoidBehaviour" type="Node" parent="SteeringController"]
 script = ExtResource( 7 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2( 0.02, 0.02 )
-polygon = PoolVector2Array( -1107.5, -718.2, -1320.5, -673.2, -1454.5, -615.7, -1553.5, -514.2, -1593.5, -422.2, -1614.96, -311.936, -1630.3, 309, -1594.5, 446, -1550.3, 521, -1481.3, 583, -1386.6, 623, -1179.35, 654.839, -748.241, 689.156, 802.043, 710.262, 1220.64, 685.824, 1377.09, 653.948, 1489.5, 612.6, 1545.5, 562.5, 1580.5, 482.2, 1631.5, 159.8, 1631.5, -65.1, 1612.7, -334, 1588.7, -454, 1539.6, -536, 1427.5, -611, 1201.34, -672.132, 795.1, -695 )
-[connection signal="steerAt" from="." to="FrontRight" method="_on_Car_steerAt"]
-[connection signal="steerAt" from="." to="FrontLeft" method="_on_Car_steerAt"]
+[connection signal="steerAt" from="." to="Tires/FrontRight" method="_on_Car_steerAt"]
+[connection signal="steerAt" from="." to="Tires/FrontLeft" method="_on_Car_steerAt"]
